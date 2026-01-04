@@ -1,5 +1,4 @@
 #include <msp430.h>
-//Reed Minor & Michael Natufe
 
 void uartInit(void);
 void uartPutC(char c);
@@ -14,15 +13,15 @@ int main(void)
    WDTCTL = WDTPW | WDTHOLD; #Hold watchdog timer
    PM5CTL0 &= ~LOCKLPM5; #Disable GPIO high impedance mode
 
-  #Set GPIO pin directions
+  //Set GPIO pin directions
    P1DIR |= BIT0 | BIT2;
    P1OUT &= ~BIT2;
 
-#Initialize UART and ADC
+//Initialize UART and ADC
    uartInit();
    adcInit();
 
-  #Set Capture-and-Control Register clock
+  //Set Capture-and-Control Register clock
    TA1CCR0 = 20000 - 1;
    TA1CCR1 = 1500;
    TA1CCTL0 = CCIE;
@@ -30,12 +29,12 @@ int main(void)
    TA1CTL = TASSEL_2 | MC_1 | TACLR;
    __enable_interrupt();
 
-  #Send ready message to terminal
+  //Send ready message to terminal
    uartPutS("System A Ready\r\n");
 
 
 
-#Wait for user input from terminal and returns output 
+//Wait for user input from terminal and returns output 
    while (1)
    {
        while (!(UCA0IFG & UCRXIFG));
@@ -52,7 +51,7 @@ int main(void)
                uartPutS("5. Temp\r\n");
                break;
            case '1':
-               uartPutS("ESET 369: Reed and Michael\r\n");
+               uartPutS("ESET 369\r\n");
                break;
            case '2':
                uartPutS("Servo 0 degrees\r\n");
@@ -85,14 +84,14 @@ int main(void)
    return 0;
 }
 
-#UART Setup
+//UART Setup
 void uartInit(void)
 {
    UCA0CTLW0 |= UCSWRST;
    UCA0CTLW0 |= UCSSEL_2;
    UCA0BRW = 6;
    UCA0MCTLW = UCOS16 | (8 << 4) | (32 << 8);
-  #Enable alternate mode for ADC conversion
+  //Enable alternate mode for ADC conversion
    P2SEL1 |= BIT0 | BIT1;
    P2SEL0 &= ~(BIT0 | BIT1);
    UCA0CTLW0 &= ~UCSWRST;
@@ -116,7 +115,7 @@ void uartPrintFloat(float num)
        uartPutC('-');
        num = -num;
    }
-  #Integer math to convert the temperature values for UART transmission
+  //Integer math to convert the temperature values for UART transmission
    int whole = (int)num;
    int decimal = (int)((num - whole) * 100 + 0.5);
    if (whole >= 100) {
@@ -147,7 +146,7 @@ void adcInit(void)
    ADC12MCTL0 = ADC12VRSEL_1 | ADC12INCH_30; // Use internal ref, channel 30
 }
 
-#Read microcontrollers internal raw ADC value
+//Read microcontrollers internal raw ADC value
 unsigned int read_adc_raw(void)
 {
    ADC12CTL0 |= ADC12ENC | ADC12SC;
@@ -155,7 +154,7 @@ unsigned int read_adc_raw(void)
    return ADC12MEM0;
 }
 
-#Convert degrees Celsius to degrees Fahrenheit 
+//Convert degrees Celsius to degrees Fahrenheit 
 float TempCtoF(unsigned int raw)
 {
    unsigned int Ref_T30 = *((unsigned int *)(TLV_START + TLV_ADC12CAL + 0x09));
