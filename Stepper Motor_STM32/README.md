@@ -1,0 +1,1 @@
+This code was written for an STM32F401RET6 microcontroller connected to a servo motor control circuit. The program allows the motor to be rotated at varying rotation angles for use in low-power robotic applications.
