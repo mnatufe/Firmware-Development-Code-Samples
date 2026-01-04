@@ -1,0 +1,1 @@
+This code was written for an MSP430FR5994 microcontroller connected to a test circuit that included an ADXL335 accelerometer for detecting tilt across the X, Y, and Z axes. The circuit utilized the converted ADC value from the accelerometer to toggle specified output LEDs depending on the orientation of the unit.
