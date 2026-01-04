@@ -1,1 +1,1 @@
-This code was written for an MSP430FR5994 microcontroller connected to a UART serial communication terminal on Code Compose Studio. It serves as an introduction to UART and serial comms as part of a lab for "Embedded Systems Software (ESET 369)".
+This code was written for an MSP430FR5994 microcontroller connected to a UART serial communication terminal on Code Compose Studio. It serves as an introduction to UART and serial comms as part of an academic lab, as well as testing of temperature and voltage ADC conversions, with stepper motor functions to a connected servo.
