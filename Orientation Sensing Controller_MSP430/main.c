@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-#Converts rawADC value to voltage using internal 3.3V source
+//Converts rawADC value to voltage using internal 3.3V source
 #define Vout(v) ((v) * (3.3 / 4095.0))
 unsigned int adc_raw[3];
 float adc_convert[3];                    // ADC value array
@@ -62,7 +62,7 @@ void readADC(void){
     adc_raw[2] = ADC12MEM2;                 // A11
 }
 
-
+//Converts ADC values across all axes
 void convertADC(void){
     readADC();
     unsigned int i;
@@ -74,7 +74,7 @@ void convertADC(void){
     Vz = adc_convert[2];
 }
 
-
+//Converts the ADC voltage reading to angle by referencing the accelerometers midpoint
 void angle(void){
     convertADC();
     //1.65V is the midpoint of the ADXL335 accelerometer. +- 0.3V change for every 1g
