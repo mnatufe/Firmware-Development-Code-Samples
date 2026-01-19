@@ -1,1 +1,1 @@
-Designed an orientation detecting application for an ADXL335 accelerometer based on the degree of tilt along all axes. Utilized a 12-bit SAR ADC module on an MSP430FR5994 for multi-sample conversion, displaying voltage-converted angle values on an external LCD.
+Implemented a multi-peripheral embedded application on an MSP430FR5994, using ADC12 for reading and displaying internal temperature sensor values, PWM-based stepper motor control, and UART communication for relaying input options and controller feedback.
